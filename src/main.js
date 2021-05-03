@@ -1,9 +1,9 @@
 import Vue from "vue"; // importar la libreria con npm
-import App from "./App.vue"; // importamos el componente App
+import App from "../src/App.vue"; // importamos el componente App
 import "@/assets/css/tailwind.css";
 
 
-import router from './router'
+import router from '../src/router'
 Vue.config.productionTip = false;
 
 new Vue({

@@ -1,8 +1,11 @@
 <template>
   <main id="app">
     <px-header></px-header>
+    <router-view class="container px-5 sm:px-20 py-20 flex hustify-center"></router-view>
   </main>
 </template>
+
+
 
 <script>
 

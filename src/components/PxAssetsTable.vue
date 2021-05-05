@@ -15,13 +15,15 @@
     </thead>
     <tbody>
       <tr
-      v-for="a in assets" 
-      v-bind:key="a.id"
-      class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100">
+        v-for="a in assets"
+        v-bind:class="getColor(a.priceUsd)"
+        v-bind:key="a.id"
+        class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
+      >
         <td></td>
         <td># {{ a.rank }}</td>
         <td>{{ a.name }}</td>
-        <td></td>
+        <td>{{ a.priceUsd }}</td>
         <td></td>
         <td>{{ a.changePercent24Hr }}</td>
         <td class="hidden sm:block"></td>
@@ -33,13 +35,21 @@
 <script>
 export default {
   name: "PxAssetsTable",
-
   props: {
     assets: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
+  methods: {
+    getColor(cond) {
+      if (cond>500) {
+        return 'green';
+      } else {
+        return 'red';
+      }
+    },
+  },
 };
 </script>
 
@@ -73,5 +83,13 @@ th {
   th {
     padding: 12px;
   }
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
 </style>

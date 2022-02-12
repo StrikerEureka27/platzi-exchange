@@ -10,22 +10,27 @@
         <th>Precio</th>
         <th>Cap. de Mercado</th>
         <th>Variación 24hs</th>
+        <th>Detalle</th>
         <td class="hidden sm:block"></td>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="a in assets"
-        v-bind:class="getColor(a.priceUsd)"
         v-bind:key="a.id"
         class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
       >
         <td></td>
         <td># {{ a.rank }}</td>
         <td>{{ a.name }}</td>
-        <td>{{ a.priceUsd }}</td>
-        <td></td>
-        <td>{{ a.changePercent24Hr }}</td>
+        <td v-bind:class="getColor(a.priceUsd)">{{ a.priceUsd | dollar }}</td>
+        <td>{{ a.marketCapUsd | dollar }}</td>
+        <td>{{ a.changePercent24Hr | percent }}</td>
+        <td>
+          <button v-on:click="CoinDeatilFwd(a.id)" class="rounded bg-green-400">
+            Detalles
+          </button>
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
@@ -33,6 +38,8 @@
 </template>
 
 <script>
+// import CoinDetail from '../views/CoinDetail.vue';
+
 export default {
   name: "PxAssetsTable",
   props: {
@@ -43,11 +50,14 @@ export default {
   },
   methods: {
     getColor(cond) {
-      if (cond>500) {
-        return 'green';
+      if (cond > 500) {
+        return "green";
       } else {
-        return 'red';
+        return "red";
       }
+    },
+    CoinDeatilFwd(name) {
+      this.$router.push({ name: 'CoinDetail', params: { id: name} }) 
     },
   },
 };
@@ -60,6 +70,11 @@ export default {
 
 .down::before {
   content: "👇";
+}
+
+.rounded {
+  color: white;
+  padding: 5px;
 }
 
 td {

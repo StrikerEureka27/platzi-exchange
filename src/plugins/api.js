@@ -22,6 +22,18 @@ const obtainDataCoins = async () => {
 }
 
 
+const obtainCoinDetails = async (coinName) =>{
+    try{
+        const coinDetail = URL.split("?")[0]+`/${coinName.toLowerCase()}`;
+        const response = await fetch(coinDetail, { method: "GET" } );
+        let parsedResponse = await response.json();
+        return parsedResponse;
+    }catch(e){
+        console.log(e);
+    }
+}
+
 export default {
-    obtainDataCoins
+    obtainDataCoins, 
+    obtainCoinDetails
 }

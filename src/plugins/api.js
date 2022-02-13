@@ -27,13 +27,29 @@ const obtainCoinDetails = async (coinName) =>{
         const coinDetail = URL.split("?")[0]+`/${coinName.toLowerCase()}`;
         const response = await fetch(coinDetail, { method: "GET" } );
         let parsedResponse = await response.json();
+        console.log(parsedResponse);
         return parsedResponse;
     }catch(e){
         console.log(e);
     }
 }
 
+function getAssetHistory(coin) {
+    /*const now = new Date()
+    const end = now.getTime()
+    now.setDate(now.getDate() - 1)
+    const start = now.getTime()*/
+  
+    return fetch(
+      `${URL.split('?')[0]}/${coin}/history?interval=d1`
+    )
+      .then(res => res.json())
+      .then(res => res.data)
+  }
+  
+
 export default {
     obtainDataCoins, 
-    obtainCoinDetails
+    obtainCoinDetails,
+    getAssetHistory
 }

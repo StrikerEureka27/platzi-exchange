@@ -10,7 +10,7 @@ export default new Router({
     mode: 'history', // Utiliza el history mode de HTML
     routes: [  //Definimos un arreglo de ruta, donde cada ruta se representa con un objeto
         {
-           path: '/', 
+           path: '/Home', 
            name: 'Home', 
            component: Home 
         }, 

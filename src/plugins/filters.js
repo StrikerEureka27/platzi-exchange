@@ -12,5 +12,10 @@ const percent = (value) => {
     return percent;
 }
 
+const bigNumber = (value) => {
+    let bigNumber = numeral(value).format('0,0.0000'); 
+    return bigNumber;
+}
 
-export { dollarFilter, percent }
+
+export { dollarFilter, percent, bigNumber }
